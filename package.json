@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "Docker:build": "docker compose build",
+    "Docker:up": "docker compose up -d",
+    "Docker:down": "docker compose down -v",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

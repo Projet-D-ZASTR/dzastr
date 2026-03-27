@@ -1,86 +1,55 @@
 services:
 
-  mj-db:
+  dzastr-db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: mountain_journey
-      POSTGRES_USER: mj_user
-      POSTGRES_PASSWORD: mj_password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5433:5432"   # 5433 en local pour ne pas entrer en conflit avec ton PostgreSQL local (port 5432)
+      - "${DB_EXPOSED_PORT:-5433}:5432"
     volumes:
-      - mj-db-data:/var/lib/postgresql/data
-      - ./mj-moteur/src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - dzaster-db-data:/var/lib/postgresql/data
     networks:
-      - mj-network
+      - dzaster-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mj_user -d mountain_journey"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  mj-auth:
+  dzaster-auth:
     build:
-      context: ./mj-auth
+      context: ./dzastr-auth
     ports:
-      - "8081:8081"
+      - "${AUTH_PORT:-8081}:8081"
+    env_file:
+      - ./.env
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://mj-db:5432/mountain_journey
-      - SPRING_DATASOURCE_USERNAME=mj_user
-      - SPRING_DATASOURCE_PASSWORD=mj_password
-      - JWT_SECRET=local_docker_secret_key_must_be_at_least_256_bits_long_ok
+      PORT: ${AUTH_PORT:-8081}
+      DB_URL: ${DB_URL}
     depends_on:
-      mj-db:
+      dzastr-db:
         condition: service_healthy
     networks:
-      - mj-network
+      - dzaster-network
 
-  mj-moteur:
+  dzaster-fo:
     build:
-      context: ./mj-moteur
+      context: ./dzastr-fo
+      args:
+        VITE_API_URL: http://dzaster-auth:${AUTH_PORT:-8081}
     ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://mj-db:5432/mountain_journey
-      - SPRING_DATASOURCE_USERNAME=mj_user
-      - SPRING_DATASOURCE_PASSWORD=mj_password
-      - JWT_SECRET=local_docker_secret_key_must_be_at_least_256_bits_long_ok
+      - "${FO_PORT:-4200}:80"
     depends_on:
-      mj-db:
-        condition: service_healthy
-      mj-auth:
+      dzaster-auth:
         condition: service_started
     networks:
-      - mj-network
-
-  mj-front:
-    build:
-      context: ./mj-front
-    ports:
-      - "4200:80"
-    depends_on:
-      - mj-moteur
-      - mj-auth
-    networks:
-      - mj-network
-
-  k6:
-    image: grafana/k6:latest
-    depends_on:
-      - mj-auth
-      - mj-moteur
-    networks:
-      - mj-network
-    working_dir: /scripts
-    volumes:
-      - ./k6:/scripts
-      - ./libs:/libs
+      - dzaster-network
 
 volumes:
-  mj-db-data:
+  dzaster-db-data:
 
 networks:
-  mj-network:
+  dzaster-network:
     driver: bridge
