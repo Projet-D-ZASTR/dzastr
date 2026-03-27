@@ -1,0 +1,86 @@
+services:
+
+  mj-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: mountain_journey
+      POSTGRES_USER: mj_user
+      POSTGRES_PASSWORD: mj_password
+    ports:
+      - "5433:5432"   # 5433 en local pour ne pas entrer en conflit avec ton PostgreSQL local (port 5432)
+    volumes:
+      - mj-db-data:/var/lib/postgresql/data
+      - ./mj-moteur/src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mj-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mj_user -d mountain_journey"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mj-auth:
+    build:
+      context: ./mj-auth
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://mj-db:5432/mountain_journey
+      - SPRING_DATASOURCE_USERNAME=mj_user
+      - SPRING_DATASOURCE_PASSWORD=mj_password
+      - JWT_SECRET=local_docker_secret_key_must_be_at_least_256_bits_long_ok
+    depends_on:
+      mj-db:
+        condition: service_healthy
+    networks:
+      - mj-network
+
+  mj-moteur:
+    build:
+      context: ./mj-moteur
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://mj-db:5432/mountain_journey
+      - SPRING_DATASOURCE_USERNAME=mj_user
+      - SPRING_DATASOURCE_PASSWORD=mj_password
+      - JWT_SECRET=local_docker_secret_key_must_be_at_least_256_bits_long_ok
+    depends_on:
+      mj-db:
+        condition: service_healthy
+      mj-auth:
+        condition: service_started
+    networks:
+      - mj-network
+
+  mj-front:
+    build:
+      context: ./mj-front
+    ports:
+      - "4200:80"
+    depends_on:
+      - mj-moteur
+      - mj-auth
+    networks:
+      - mj-network
+
+  k6:
+    image: grafana/k6:latest
+    depends_on:
+      - mj-auth
+      - mj-moteur
+    networks:
+      - mj-network
+    working_dir: /scripts
+    volumes:
+      - ./k6:/scripts
+      - ./libs:/libs
+
+volumes:
+  mj-db-data:
+
+networks:
+  mj-network:
+    driver: bridge
