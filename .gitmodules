@@ -1,9 +1,12 @@
 [submodule "dzastr-fo"]
 	path = dzastr-fo
 	url = https://github.com/Projet-D-ZASTR/dzastr-fo
+	branch = develop
 [submodule "dzastr-mo"]
 	path = dzastr-mo
 	url = https://github.com/Projet-D-ZASTR/dzastr-mo
+	branch = develop
 [submodule "dzastr-auth"]
 	path = dzastr-auth
 	url = https://github.com/Projet-D-ZASTR/dzastr-auth
+	branch = develop
