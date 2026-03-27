@@ -1,0 +1,83 @@
+databases:
+
+  # ─── Base de données PostgreSQL managée Render ──────────
+  - name: dzastr-db
+    plan: free
+    databaseName: dzastr_db
+    user: dzastr_user
+
+services:
+
+  # ─── Backend Auth ───────────────────────────────────────
+  - type: web
+    name: dzastr-auth
+    runtime: docker
+    rootDir: dzastr-auth
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dzastr-db
+          property: connectionString
+      - key: DATASOURCE_USERNAME
+        fromDatabase:
+          name: dzastr-db
+          property: user
+      - key: DATASOURCE_PASSWORD
+        fromDatabase:
+          name: mj-db
+          property: password
+      - key: JWT_SECRET
+        sync: false   # ⚠️ À définir manuellement dans le dashboard Render
+
+  # ─── Backend Moteur ─────────────────────────────────────
+  - type: web
+    name: dzastr-moteur
+    runtime: docker
+    rootDir: dzastr-moteur
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dzastr-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: dzastr-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: dzastr-db
+          property: password
+      - key: JWT_SECRET
+        sync: false   # ⚠️ Même secret que dzastr-auth — à définir manuellement
+      - key: DZASTER_AUTH_URL
+        fromService:
+          name: dzastr-auth
+          type: web
+          property: host
+
+  # ─── Frontend Angular ────────────────────────────────────
+  - type: web
+    name: dzastr-front
+    runtime: docker
+    rootDir: dzastr-front
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DZASTR_AUTH_API_URL
+        fromService:
+          name: dzastr-auth
+          type: web
+          property: host
+      - key: DZASTR_MOTEUR_API_URL
+        fromService:
+          name: dzastr-moteur
+          type: web
+          property: host

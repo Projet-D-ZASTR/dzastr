@@ -34,6 +34,24 @@ services:
     networks:
       - dzaster-network
 
+  dzaster-mo:
+    build:
+      context: ./dzastr-mo
+    env_file:
+      - ./.env
+    environment:
+      PORT: ${MO_PORT:-8000}
+      DATABASE_URL: ${DB_URL}
+    ports:
+      - "${MO_PORT:-8000}:${MO_PORT:-8000}"
+    depends_on:
+      dzastr-db:
+        condition: service_healthy
+      dzaster-auth:
+        condition: service_started
+    networks:
+      - dzaster-network
+
   dzaster-fo:
     build:
       context: ./dzastr-fo
@@ -43,6 +61,8 @@ services:
       - "${FO_PORT:-4200}:80"
     depends_on:
       dzaster-auth:
+        condition: service_started
+      dzaster-mo:
         condition: service_started
     networks:
       - dzaster-network
