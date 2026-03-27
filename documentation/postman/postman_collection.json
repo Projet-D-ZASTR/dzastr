@@ -1,0 +1,165 @@
+{
+  "info": {
+    "name": "dzastr-auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/secure/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "secure", "register"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "if (json && json.accessToken) { pm.environment.set('accessToken', json.accessToken); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/secure/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "secure", "login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "if (json && json.accessToken) { pm.environment.set('accessToken', json.accessToken); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Verify token",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceToken}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/secure/verify",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "secure", "verify"]
+        }
+      }
+    },
+    {
+      "name": "Users - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users"]
+        }
+      }
+    },
+    {
+      "name": "Users - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users"]
+        }
+      }
+    },
+    {
+      "name": "Users - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users", "1"]
+        }
+      }
+    },
+    {
+      "name": "Users - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users", "1"]
+        }
+      }
+    },
+    {
+      "name": "Users - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users", "1"]
+        }
+      }
+    }
+  ]
+}
