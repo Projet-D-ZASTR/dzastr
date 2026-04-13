@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dzastr-auth" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dzastr-fo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dzastr-mo" vcs="Git" />
   </component>
 </project>
