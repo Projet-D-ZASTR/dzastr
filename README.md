@@ -49,6 +49,15 @@ This is a project free of right. You can use it has you wish if you integre my n
 **Render FO**
 >https://dzastr-fo.onrender.com/auth
 
+Voici le résumé de la stratégie de déploiement du projet:
+
+- Crée une branche tiré de develop.
+- Après validation de la branche, crée une MR vers develop.
+- Après validation de la MR, merge la branche dans develop.
+- Après validation du merge, crée une MR de develop vers production.
+- Un github action se déclenche pour valider la MR de develop vers production.
+- Si la MR est validé, et le merge est fait, le pipeline de CI/CD se déclenche et déploie automatiquement l'application sur Render.
+
 ### Documentation:
 
 Pour accèder à la documentation de l'API, il y a deux options:
