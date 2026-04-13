@@ -24,7 +24,7 @@ services:
     ports:
       - "${AUTH_PORT:-8081}:8081"
     env_file:
-      - ./.env
+      - .env
     environment:
       PORT: ${AUTH_PORT:-8081}
       DB_URL: ${DB_URL}
@@ -38,7 +38,7 @@ services:
     build:
       context: ./dzastr-mo
     env_file:
-      - ./.env
+      - .env
     environment:
       PORT: ${MO_PORT:-8000}
       DATABASE_URL: ${DB_URL}
@@ -59,7 +59,8 @@ services:
     build:
       context: ./dzastr-fo
       args:
-        VITE_API_URL: http://dzaster-auth:${AUTH_PORT:-8081}
+        VITE_AUTH_API_URL: http://localhost:${AUTH_PORT:-8081}/api
+        VITE_AUTH_SERVICE_TOKEN: ${AUTH_SERVICE_TOKEN}
     ports:
       - "${FO_PORT:-4200}:80"
     depends_on:

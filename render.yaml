@@ -57,21 +57,18 @@ services:
       - key: JWT_SECRET
         sync: false   # ⚠️ Même secret que dzastr-auth — à définir manuellement
 
-  # ─── Frontend Angular ────────────────────────────────────
+  # ─── Frontend Vue ────────────────────────────────────────
   - type: web
     name: dzastr-front
     runtime: docker
-    rootDir: dzastr-front
+    rootDir: dzastr-fo
     dockerfilePath: ./Dockerfile
     plan: free
     envVars:
-      - key: DZASTR_AUTH_API_URL
+      - key: VITE_AUTH_API_URL
         fromService:
           name: dzastr-auth
           type: web
           property: host
-      - key: DZASTR_MOTEUR_API_URL
-        fromService:
-          name: dzastr-moteur
-          type: web
-          property: host
+      - key: VITE_AUTH_SERVICE_TOKEN
+        sync: false
