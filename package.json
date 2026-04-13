@@ -8,7 +8,8 @@
     "Docker:up": "docker compose up -d",
     "Docker:down": "docker compose down -v",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pull": "sh ./update-submodules-develop.sh"
+    "submodules:pull:develop": "sh ./update-submodules-develop.sh",
+    "pull": "npm run submodules:pull:develop"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
