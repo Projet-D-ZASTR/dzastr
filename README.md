@@ -4,6 +4,10 @@
   <img src="/public/assets/Images/D-Zastre.png" alt="Dzastr Logo" width="200">
 </p>
 
+# D-ZASTR - LAST CHANGELOG
+
+>**1.0.1-13/04/2026**
+
 ## Description
 
 D-Zastr is the new web application for create manage and share your clients.
