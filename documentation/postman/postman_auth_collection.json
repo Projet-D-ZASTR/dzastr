@@ -3,6 +3,12 @@
     "name": "dzastr-auth API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    { "key": "baseUrlAuth", "value": "" },
+    { "key": "serviceTokenAuth", "value": "" },
+    { "key": "accessToken", "value": "" },
+    { "key": "serviceTokenMo", "value": "" }
+  ],
   "item": [
     {
       "name": "Auth - Register",
@@ -10,15 +16,15 @@
         "method": "POST",
         "header": [
           { "key": "Content-Type", "value": "application/json" },
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
         },
         "url": {
-          "raw": "{{baseUrl}}/api/secure/register",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/secure/register",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "secure", "register"]
         }
       },
@@ -41,15 +47,15 @@
         "method": "POST",
         "header": [
           { "key": "Content-Type", "value": "application/json" },
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
         },
         "url": {
-          "raw": "{{baseUrl}}/api/secure/login",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/secure/login",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "secure", "login"]
         }
       },
@@ -71,12 +77,12 @@
       "request": {
         "method": "GET",
         "header": [
-          { "key": "x-service-token", "value": "{{serviceToken}}" },
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" },
           { "key": "Authorization", "value": "Bearer {{accessToken}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/secure/verify",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/secure/verify",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "secure", "verify"]
         }
       }
@@ -87,15 +93,15 @@
         "method": "POST",
         "header": [
           { "key": "Content-Type", "value": "application/json" },
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
         },
         "url": {
-          "raw": "{{baseUrl}}/api/users",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/users",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "users"]
         }
       }
@@ -105,11 +111,11 @@
       "request": {
         "method": "GET",
         "header": [
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/users",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/users",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "users"]
         }
       }
@@ -119,11 +125,11 @@
       "request": {
         "method": "GET",
         "header": [
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/users/1",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/users/1",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "users", "1"]
         }
       }
@@ -134,15 +140,15 @@
         "method": "PUT",
         "header": [
           { "key": "Content-Type", "value": "application/json" },
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"User_Username\": \"john\",\n  \"User_Role\": \"admin\",\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
         },
         "url": {
-          "raw": "{{baseUrl}}/api/users/1",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/users/1",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "users", "1"]
         }
       }
@@ -152,11 +158,11 @@
       "request": {
         "method": "DELETE",
         "header": [
-          { "key": "x-service-token", "value": "{{serviceToken}}" }
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/users/1",
-          "host": ["{{baseUrl}}"],
+          "raw": "{{baseUrlAuth}}/api/users/1",
+          "host": ["{{baseUrlAuth}}"],
           "path": ["api", "users", "1"]
         }
       }

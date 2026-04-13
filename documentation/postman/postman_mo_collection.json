@@ -1,0 +1,374 @@
+{
+  "info": {
+    "name": "dzastr-mo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrlMo", "value": "" },
+    { "key": "serviceTokenAuth", "value": "" },
+    { "key": "accessToken", "value": "" },
+    { "key": "serviceTokenMo", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth - Login (get access token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenAuth}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"User_Email\": \"john@example.com\",\n  \"User_Password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{authBaseUrl}}/api/secure/login",
+          "host": ["{{baseUrlAuth}}"],
+          "path": ["api", "secure", "login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "if (json && json.accessToken) { pm.collectionVariables.set('accessToken', json.accessToken); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invoices - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": 1,\n  \"client_id\": 1,\n  \"invoice_price\": 1200.5,\n  \"invoice_date\": \"2026-04-13\",\n  \"item_ids\": [1, 2]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/invoices/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["invoices", ""]
+        }
+      }
+    },
+    {
+      "name": "Invoices - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/invoices/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["invoices", ""]
+        }
+      }
+    },
+    {
+      "name": "Invoices - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/invoices/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["invoices", "1"]
+        }
+      }
+    },
+    {
+      "name": "Invoices - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"invoice_price\": 1300,\n  \"invoice_state\": \"sent\",\n  \"item_ids\": [1, 3]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/invoices/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["invoices", "1"]
+        }
+      }
+    },
+    {
+      "name": "Invoices - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/invoices/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["invoices", "1"]
+        }
+      }
+    },
+    {
+      "name": "Clients - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"ACME Corp\",\n  \"entreprise\": \"ACME\",\n  \"email\": \"contact@acme.com\",\n  \"adresse\": \"1 rue de Paris\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/clients/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["clients", ""]
+        }
+      }
+    },
+    {
+      "name": "Clients - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/clients/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["clients", ""]
+        }
+      }
+    },
+    {
+      "name": "Clients - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/clients/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["clients", "1"]
+        }
+      }
+    },
+    {
+      "name": "Clients - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"ACME Corp Updated\",\n  \"email\": \"new-contact@acme.com\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/clients/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["clients", "1"]
+        }
+      }
+    },
+    {
+      "name": "Clients - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/clients/1?confirme=true",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["clients", "1"],
+          "query": [
+            { "key": "confirme", "value": "true" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Services - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Developpement\",\n  \"prix_heure\": 95\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/services/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["services", ""]
+        }
+      }
+    },
+    {
+      "name": "Services - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/services/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["services", ""]
+        }
+      }
+    },
+    {
+      "name": "Services - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/services/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["services", "1"]
+        }
+      }
+    },
+    {
+      "name": "Services - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Developpement Premium\",\n  \"prix_heure\": 120\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/services/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["services", "1"]
+        }
+      }
+    },
+    {
+      "name": "Services - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/services/1?confirme=true",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["services", "1"],
+          "query": [
+            { "key": "confirme", "value": "true" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ServiceFacture - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ServiceFacture_Id\": 1,\n  \"Service_Id\": 1,\n  \"ServiceFacture_Lot\": \"LOT-A\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/service_facture/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["service_facture", ""]
+        }
+      }
+    },
+    {
+      "name": "ServiceFacture - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/service_facture/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["service_facture", ""]
+        }
+      }
+    },
+    {
+      "name": "ServiceFacture - Get by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/service_facture/1",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["service_facture", "1"]
+        }
+      }
+    },
+    {
+      "name": "ServiceFacture - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/service_facture/1?confirme=true",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["service_facture", "1"],
+          "query": [
+            { "key": "confirme", "value": "true" }
+          ]
+        }
+      }
+    }
+  ]
+}

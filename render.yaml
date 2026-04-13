@@ -45,6 +45,15 @@ services:
         fromDatabase:
           name: dzastr-db
           property: connectionString
+      - key: AUTH_SERVICE_URL
+        fromService:
+          name: dzastr-auth
+          type: web
+          property: host
+      - key: AUTH_SERVICE_TOKEN
+        sync: false
+      - key: SERVICE_TOKEN
+        sync: false
       - key: JWT_SECRET
         sync: false   # ⚠️ Même secret que dzastr-auth — à définir manuellement
 
