@@ -1,7 +1,6 @@
-
 # TODO V1 - D-ZASTR
 
-## 1) Fonctionnalites minimales V1
+#  Fonctionnalites minimales V1
 
 ### Authentification
 - [x] Creer un compte freelance
@@ -98,5 +97,44 @@
 - [x] Tests presents, pertinents, automatisees
 - [x] Projet lancable en environnement reproductible (Docker)
 - [x] CI/CD operationnelle + deploiement OK
-- [x] Documentation complete  
-  
+- [x] Documentation complete
+
+# FreelanceFlow v2
+
+## Produit - Facturation & PDF
+- [ ] Envoi de facture par email avec un message
+- [ ] Joindre automatiquement le PDF genere
+
+
+## Produit - Logo
+- [ ] Uploader un logo
+- [ ] Afficher le logo dans les factures PDF generees
+
+## Csv - Exports & reporting
+- [ ] Exporter la liste des clients en CSV
+- [ ] Exporter la liste des factures en CSV
+
+## Dashboard - Exports & reporting
+- [ ] Dashboard: chiffre d'affaires total
+- [ ] Dashboard: nombre total de factures
+- [ ] Dashboard: chiffre d'affaires par client
+- [ ] Dashboard: chiffre d'affaires par mois
+
+## Performance - Cache
+- [ ] Mettre en place un systeme de cache (dashboard, listes)
+- [ ] Reduire les recalculs inutiles via le cache
+
+## Ops - Observabilite & fiabilite
+- [ ] Mettre en place des logs structures
+
+
+## Monitoring 
+- [ ] Rendre accessible un dashboard de monitoring
+- [ ] Mettre en place un monitoring simple (etat app, erreurs, metriques)
+
+### Delivery - Pilotage
+- [ ] Maintenir un backlog propre
+- [ ] Definir un plan de releases et de tags
+- [ ] Maintenir la qualite du code et des tests
+- [ ] Garder la pipeline CI/CD fonctionnelle
+- [ ] Garder l'application deployee et accessible
