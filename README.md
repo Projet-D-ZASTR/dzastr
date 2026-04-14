@@ -15,6 +15,11 @@ D-Zastr have a API for manage users and client information.
 
 This is a project free of right. You can use it has you wish if you integre my names. Thanks for your reading.
 
+## Liens de production:
+
+**Render FO**
+>https://dzastr-fo.onrender.com/auth
+
 ### Authors:
 
 - Thibaut FIGUEIRA, Devops.
@@ -48,10 +53,7 @@ This is a project free of right. You can use it has you wish if you integre my n
 
 >**Git Kamban** https://github.com/orgs/Projet-D-ZASTR/projects/3/views/1
 
-#### Liens production:
-
-**Render FO**
->https://dzastr-fo.onrender.com/auth
+#### Stratégie de production:
 
 Voici le résumé de la stratégie de déploiement du projet:
 
