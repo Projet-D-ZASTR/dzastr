@@ -61,6 +61,8 @@ services:
       args:
         VITE_AUTH_API_URL: http://localhost:${AUTH_PORT:-8081}/api
         VITE_AUTH_SERVICE_TOKEN: ${AUTH_SERVICE_TOKEN}
+    environment:
+      MO_API_UPSTREAM: dzaster-mo:${MO_PORT:-8000}
     ports:
       - "${FO_PORT:-4200}:80"
     depends_on:

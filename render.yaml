@@ -70,5 +70,10 @@ services:
           name: dzastr-auth
           type: web
           property: host
+      - key: MO_API_UPSTREAM
+        fromService:
+          name: dzastr-moteur
+          type: web
+          property: host
       - key: VITE_AUTH_SERVICE_TOKEN
         sync: false
