@@ -46,13 +46,13 @@
 
 ### Qualite de code
 - [x] Configurer lint
-- [ ] Configurer Prettier
-- [ ] Configurer hooks pre-commit
+- [x] Configurer Prettier
+- [x] Configurer hooks pre-commit
 
 ### Tests
 - [x] Ajouter des tests unitaires backend (obligatoire)
 - [ ] Ajouter un test de charge avec metriques
-- [ ] Executer les tests automatiquement en CI
+- [x] Executer les tests automatiquement en CI
 
 ### Docker
 - [x] Dockerfile frontend
@@ -62,18 +62,18 @@
 ## 3) CI/CD
 - [x] Pipeline CI: installation des dependances
 - [x] Pipeline CI: lint
-- [ ] Pipeline CI: verification formatage
-- [ ] Pipeline CI: tests
+- [x] Pipeline CI: verification formatage
+- [x] Pipeline CI: tests
 - [x] Pipeline CI: build applicatif
 - [x] Pipeline CI: build images Docker
 - [x] Pipeline CI/CD: publication sur registre
-- [ ] Pipeline CI/CD: deploiement automatique
+- [x] Pipeline CI/CD: deploiement automatique
 
 ## 4) Deploiement
 - [x] Application accessible en ligne avec URL fonctionnelle
-- [ ] Fournir lien frontend
-- [ ] Fournir lien backend (si pertinent)
-- [ ] Documenter brievement la strategie de deploiement
+- [x] Fournir lien frontend
+- [x] Fournir lien backend (si pertinent)
+- [x] Documenter brievement la strategie de deploiement
 
 ## 5) Versioning et releases
 - [ ] Creer des tags Git
@@ -81,22 +81,22 @@
 - [ ] Sortir une version identifiable (ex: `v1.0.0`)
 
 ## 6) Documentation
-- [ ] Mettre a jour `README.md` avec:
-  - [ ] stack choisie
-  - [ ] URL de production
-  - [ ] membres de l'equipe
-- [ ] Documenter l'API
+- [x] Mettre a jour `README.md` avec:
+  - [x] stack choisie
+  - [x] URL de production
+  - [x] membres de l'equipe
+- [x] Documenter l'API
 
 ## 7) Livrables attendus
-- [ ] Partager le lien du depot GitHub
+- [x] Partager le lien du depot GitHub
 - [x] Inviter `@ynovzelab`
 
 ## 8) Definition of Done (check final)
-- [ ] Application fonctionnelle de bout en bout (auth, clients, prestations, factures, PDF)
+- [x] Application fonctionnelle de bout en bout (auth, clients, prestations, factures, PDF)
 - [x] Workflow projet propre (issues/PR/board)
-- [ ] Qualite code verifiee (lint + format)
-- [ ] Tests presents, pertinents, automatisees
+- [x] Qualite code verifiee (lint + format)
+- [x] Tests presents, pertinents, automatisees
 - [x] Projet lancable en environnement reproductible (Docker)
-- [ ] CI/CD operationnelle + deploiement OK
-- [ ] Documentation complete  
+- [x] CI/CD operationnelle + deploiement OK
+- [x] Documentation complete  
   
