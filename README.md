@@ -84,3 +84,4 @@ Un fichier Postman est disponible dans le dépôt GitHub du projet, à importer 
 
 >**AUTH** dzastr/documentation/postman/dzastr-auth.postman_collection.json
 
+! **Adressez vous à l'équipe de développement pour obtenir les variables d'environnement nécessaires à l'utilisation de la documentation Postman.** !
