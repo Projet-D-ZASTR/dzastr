@@ -226,7 +226,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nom\": \"Developpement\",\n  \"prix_heure\": 95\n}"
+          "raw": "{\n  \"User_Id\": 1,\n  \"Name\": \"Developpement\",\n  \"PriceHour\": 95\n}"
         },
         "url": {
           "raw": "{{baseUrlMo}}/services/",
@@ -276,7 +276,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nom\": \"Developpement Premium\",\n  \"prix_heure\": 120\n}"
+          "raw": "{\n  \"Name\": \"Developpement Premium\",\n  \"PriceHour\": 120\n}"
         },
         "url": {
           "raw": "{{baseUrlMo}}/services/1",
