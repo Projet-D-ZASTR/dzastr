@@ -55,7 +55,7 @@
           <mxGeometry height="30" width="210" x="350" y="-230" as="geometry" />
         </mxCell>
         <mxCell id="fwAtFjY6tu9hg4qSyHz1-3" parent="WIyWlLk6GJQsqaUBKTNV-1" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="Service" vertex="1">
-          <mxGeometry height="164" width="260" x="220" y="280" as="geometry">
+          <mxGeometry height="140" width="260" x="220" y="280" as="geometry">
             <mxRectangle height="26" width="160" x="230" y="140" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -71,11 +71,8 @@
         <mxCell id="fwAtFjY6tu9hg4qSyHz1-14" parent="fwAtFjY6tu9hg4qSyHz1-3" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ Service_Name: varchar(80)" vertex="1">
           <mxGeometry height="26" width="260" y="86" as="geometry" />
         </mxCell>
-        <mxCell id="fwAtFjY6tu9hg4qSyHz1-13" parent="fwAtFjY6tu9hg4qSyHz1-3" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ Service_Description: varchar(80)" vertex="1">
-          <mxGeometry height="26" width="260" y="112" as="geometry" />
-        </mxCell>
         <mxCell id="fwAtFjY6tu9hg4qSyHz1-6" parent="fwAtFjY6tu9hg4qSyHz1-3" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ Service_PriceHour: integer" vertex="1">
-          <mxGeometry height="26" width="260" y="138" as="geometry" />
+          <mxGeometry height="26" width="260" y="112" as="geometry" />
         </mxCell>
         <mxCell id="fwAtFjY6tu9hg4qSyHz1-15" parent="WIyWlLk6GJQsqaUBKTNV-1" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="Facture" vertex="1">
           <mxGeometry height="216" width="260" x="950" y="-30" as="geometry">
