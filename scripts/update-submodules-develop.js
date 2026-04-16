@@ -56,6 +56,20 @@ function listSubmodulePaths() {
     .filter(Boolean);
 }
 
+function updateMainRepository() {
+  console.log(`\n==> main repo`);
+
+  runGit(['fetch', 'origin', BRANCH]);
+
+  if (hasLocalBranch('.', BRANCH)) {
+    runGit(['checkout', BRANCH]);
+  } else {
+    runGit(['checkout', '-b', BRANCH, `origin/${BRANCH}`]);
+  }
+
+  runGit(['pull', '--ff-only', 'origin', BRANCH]);
+}
+
 function updateSubmodule(path) {
   console.log(`\n==> ${path}`);
 
@@ -71,6 +85,8 @@ function updateSubmodule(path) {
 }
 
 function main() {
+  updateMainRepository();
+
   console.log('Sync and init submodules...');
   runGit(['submodule', 'sync', '--recursive']);
   runGit(['submodule', 'update', '--init', '--recursive']);
@@ -86,7 +102,7 @@ function main() {
     updateSubmodule(path);
   }
 
-  console.log('\nDone. Submodules are on origin/develop (ff-only).');
+  console.log('\nDone. Main repo and submodules are on origin/develop (ff-only).');
 }
 
 try {
@@ -95,4 +111,3 @@ try {
   console.error(`\n${error.message}`);
   process.exit(1);
 }
-
