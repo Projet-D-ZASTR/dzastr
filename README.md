@@ -20,21 +20,21 @@ This is a project free of right. You can use it has you wish if you integre my n
 **Render FO**
 >https://dzastr-fo.onrender.com/auth
 
-### Authors:
+## Authors:
 
 - Thibaut FIGUEIRA, Devops.
 - Camille DAVERIO, Dev Backend.
 - Pierre SCHEYER, Dev Frontend.
 - Fabien ARTHUR, Dev Backend.
 
-### Stack:
+###Stack:
 
 - Front, vuejs.
 - Back Authentification, nodejs, js, express.
 - Back API, python.
 - Deploiement, renderer.
 
-#### Organisation:
+## Organisation:
 
 **Github project**
 >github	https://github.com/orgs/Projet-D-ZASTR/repositories
@@ -53,7 +53,7 @@ This is a project free of right. You can use it has you wish if you integre my n
 
 >**Git Kamban** https://github.com/orgs/Projet-D-ZASTR/projects/3/views/1
 
-#### Stratégie de production:
+## Stratégie de production:
 
 Voici le résumé de la stratégie de déploiement du projet:
 
@@ -64,7 +64,7 @@ Voici le résumé de la stratégie de déploiement du projet:
 - Un github action se déclenche pour valider la MR de develop vers production.
 - Si la MR est validé, et le merge est fait, le pipeline de CI/CD se déclenche et déploie automatiquement l'application sur Render.
 
-### Documentation:
+## Documentation:
 
 Pour accèder à la documentation de l'API, il y a deux options:
 
@@ -85,3 +85,18 @@ Un fichier Postman est disponible dans le dépôt GitHub du projet, à importer 
 >**AUTH** dzastr/documentation/postman/dzastr-auth.postman_collection.json
 
 ! **Adressez vous à l'équipe de développement pour obtenir les variables d'environnement nécessaires à l'utilisation de la documentation Postman.** !
+
+## Inspections
+
+>Le projet Dzastr utilise plusieurs outils d'inspection pour assurer la qualité du code et la sécurité de l'application. Voici les principaux outils utilisés:
+
+Sentry :
+Sentry est utilisé pour la surveillance des erreurs et des performances de l'application. Les rapports d'erreurs et les performances sont accessibles sur le tableau de bord Sentry.
+
+https://dzastr.sentry.io/
+*diriger vous vers l'équipe pour accéder à ce panel*
+
+Locus :
+Les tests de charge api sont réalisés avec Locus, un outil de test de charge open-source. Les résultats des tests sont disponibles sur le tableau de bord Locus.
+
+
