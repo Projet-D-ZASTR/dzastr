@@ -64,6 +64,7 @@ services:
         VITE_MO_SERVICE_TOKEN: ${SERVICE_TOKEN}
     environment:
       MO_API_UPSTREAM: dzaster-mo:${MO_PORT:-8080}
+      MO_API_UPSTREAM_SCHEME: http
     ports:
       - "${FO_PORT:-4200}:80"
     depends_on:

@@ -75,5 +75,7 @@ services:
           name: dzastr-moteur
           type: web
           property: host
+      - key: MO_API_UPSTREAM_SCHEME
+        value: https
       - key: VITE_AUTH_SERVICE_TOKEN
         sync: false
