@@ -8,7 +8,14 @@
     { "key": "baseUrlMo", "value": "" },
     { "key": "serviceTokenAuth", "value": "" },
     { "key": "accessToken", "value": "" },
-    { "key": "serviceTokenMo", "value": "" }
+    { "key": "serviceTokenMo", "value": "" },
+    { "key": "emailTo", "value": "destinataire@example.com" },
+    { "key": "emailCc", "value": "copie@example.com" },
+    { "key": "emailBcc", "value": "copie-cachee@example.com" },
+    { "key": "emailSubject", "value": "Votre facture" },
+    { "key": "emailMessage", "value": "Bonjour, veuillez trouver la facture en piece jointe." },
+    { "key": "emailPdfPath", "value": "C:/path/to/facture.pdf" },
+    { "key": "logoFilePath", "value": "C:/path/to/logo.png" }
   ],
   "item": [
     {
@@ -368,6 +375,83 @@
           "query": [
             { "key": "confirme", "value": "true" }
           ]
+        }
+      }
+    },
+    {
+      "name": "Email - Send",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "to", "value": "{{emailTo}}", "type": "text" },
+            { "key": "cc", "value": "{{emailCc}}", "type": "text", "disabled": true },
+            { "key": "bcc", "value": "{{emailBcc}}", "type": "text", "disabled": true },
+            { "key": "subject", "value": "{{emailSubject}}", "type": "text" },
+            { "key": "message", "value": "{{emailMessage}}", "type": "text" },
+            { "key": "pdf", "type": "file", "src": "{{emailPdfPath}}" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/send-email/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["send-email", ""]
+        }
+      }
+    },
+    {
+      "name": "Logos - Upload",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "file", "type": "file", "src": "{{logoFilePath}}" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrlMo}}/logos/",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["logos", ""]
+        }
+      }
+    },
+    {
+      "name": "Logos - Get Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/logos/me",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["logos", "me"]
+        }
+      }
+    },
+    {
+      "name": "Logos - Delete Me",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "x-service-token", "value": "{{serviceTokenMo}}" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrlMo}}/logos/me",
+          "host": ["{{baseUrlMo}}"],
+          "path": ["logos", "me"]
         }
       }
     }
